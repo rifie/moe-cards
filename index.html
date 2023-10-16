@@ -56,7 +56,7 @@
             backgroundColor: "#fff", // any valid CSS color format
           },
           webFloating: {
-            enable: false, // false by default
+            enable: true, // false by default
             icon: "https://app-cdn.moengage.com/sdk/bell-icon.svg", // absolute path to the icon image. by default, our icon will be used.
             postion: "0px 10px 40px 0", // need all 4 offset in proper CSS format in the order of top, right, bottom, left.
             countBackgroundColor: "#FF5A5F",
@@ -65,7 +65,7 @@
             fontFamily: "Audiowide"
           },
           mWebFloating: {
-            enable: false, // false by default
+            enable: true, // false by default
             icon: "https://app-cdn.moengage.com/sdk/bell-icon.svg", // absolute path to the icon image. by default, our icon will be used.
             postion: "0px 10px 40px 0", // need all 4 offset in proper CSS format in the order of top, right, bottom, left.
             countBackgroundColor: "#FF5A5F",
@@ -89,111 +89,12 @@
      
         Moengage.add_unique_user_id("RifieTestCards");
 
-
 	  </script>
 
 
 
     <style>
-        body {
-            background-color: #eaeaea !important;
-            margin: 0;
-            padding: 0;
-            width:100%
-        }
-
-        #container {
-            display: flex;
-            justify-content: center;
-            margin: 10px;
-            flex-direction: row;
-            position: relative;
-            align-items: center;
-            width:100%;
-        }
-
-        .carousel_item {
-            display: none;
-            flex-direction: column;
-
-        }
-
-        .carousel_item_selected {
-            display: flex;
-            justify-content: center;
-            margin-left: auto;
-            margin-right: auto;
-            flex-direction: column;
-        }
-
-        img {
-            border-radius: 10px;
-        }
-
-        #buttons-next {
-            display: flex;
-            justify-content: center;
-            margin: 10px;
-            position: absolute;
-            right:23%;
-            cursor:pointer;
-        }
-
-        #buttons-prev {
-            display: flex;
-            justify-content: center;
-            margin: 10px;
-            position: absolute;
-            left: 23%;
-            cursor:pointer;
-        }
-        
-        #previous,#next{
-            border-radius: 50%;
-            border:none;
-            background: white;
-            
-        }
-
-        #title {
-            display: flex;
-            justify-content: center;
-            margin: 10px;
-        }
-        
-        .select{
-            border-radius: 50%;
-            border:none;
-            background: white;
-            padding:5px;
-            margin:3px;
-            cursor:pointer;
-        }
-        
-        .select-highlight{
-            border-radius: 50%;
-            border:none;
-            background: gray;
-            padding:5px;
-            margin:3px;
-            cursor:pointer;
-        }
-        .select-container{
-            display: flex;
-            justify-content: center;
-            margin: 10px;
-            flex-direction: row;
-            position: absolute;
-            align-items: flex-end;
-            bottom:70px;
-            
-        }
-
-        h1,
-        h3 {
-            display: flex;
-            justify-content: center;
-        }
+      
 
         #cardicon {
             position: relative;
@@ -215,9 +116,7 @@
      <div id="cardicon"></div>
     </div>
   
-        
-
-
+    
 
 </body>
 
