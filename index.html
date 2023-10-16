@@ -14,7 +14,7 @@
 	    debug_logs: 0,
 	    cards: {
 	     enable: true,
-	      placeholder: '#cardIcon',
+	      placeholder: '#cardicon',
           backgroundColor: "#F6FBFC", // any valid CSS color format
           overLayColor: "rgba(0, 0, 0, 0.8)",
           fontFaces: [{
@@ -195,6 +195,11 @@
             justify-content: center;
         }
 
+        #cardicon {
+            position: relative;
+            z-index: 9999;
+          }
+
     </style>
 
 
@@ -207,9 +212,7 @@
 
        
             <h1>Promotion</h1>
-        <div class="placeholder">
-     <div id="cardIcon"></div>
-     </div>
+     <div id="cardicon" class="placeholder"></div>
     </div>
   
         
