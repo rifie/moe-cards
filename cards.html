@@ -3,6 +3,7 @@
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Cards Sample</title>
 
@@ -14,21 +15,96 @@
 	    debug_logs: 0,
 	    cards: {
 	     enable: true,
-	      placeholder: '#cardIcon' // CSS selector of inbox icon 
+	      placeholder: '#cardicon',
+          backgroundColor: "#F6FBFC", // any valid CSS color format
+          overLayColor: "rgba(0, 0, 0, 0.8)",
+          fontFaces: [{
+            family: "Sofia",
+            url: "https://fonts.gstatic.com/s/sofia/v14/8QIHdirahM3j_su5uI0Orbjl.woff2"
+          }, {
+            family: "Audiowide",
+            url: "https://fonts.gstatic.com/s/audiowide/v16/l7gdbjpo0cum0ckerWCdlg_OMRlABg.woff2"
+          }],
+          cardDismiss: {
+            color: "#db2828", // any valid CSS color format
+            enable: false // boolean value, which enable the dismiss option.
+          },
+          optionButtonColor: "#C4C4C4", // any valid CSS color format
+          dateTimeColor: "#8E8E8E", // any valid CSS color format
+          unclickedCardIndicatorColor: "blue", // any valid CSS color format
+          pinIcon: "https://app-cdn.moengage.com/sdk/pin-icon.svg", // absolute path to the icon image.
+          refreshIcon: "https://app-cdn.moengage.com/sdk/refresh-icon.svg", // absolute path to the icon image.
+          navigationBar: {
+            backgroundColor: "#00237C", // any valid CSS color format
+            text: "Notifications", // string. eg, Notifications
+            color: "#fff", // any valid CSS color format
+            fontSize: "16px", // any valid CSS size format
+            fontFamily: "", // any font family which is added to the website
+          },
+          closeButton: {
+            webIcon: "https://app-cdn.moengage.com/sdk/cross-icon.svg",
+            mWebIcon: "https://app-cdn.moengage.com/sdk/cross-icon.svg",
+          },
+          tab: {
+            active: {
+              color: "#06A6B7",
+              underlineColor: "#06A6B7",
+              backgroundColor: "transparent"
+            },
+            inactiveTabFontColor: "#7C7C7C",
+            fontSize: "14px", // any valid CSS size format
+            fontFamily: "", // any font family which is added to the website
+            backgroundColor: "#fff", // any valid CSS color format
+          },
+          webFloating: {
+            enable: true, // false by default
+            icon: "https://app-cdn.moengage.com/sdk/bell-icon.svg", // absolute path to the icon image. by default, our icon will be used.
+            postion: "0px 10px 40px 0", // need all 4 offset in proper CSS format in the order of top, right, bottom, left.
+            countBackgroundColor: "#FF5A5F",
+            countColor: "#fff",
+            iconBackgroundColor: "#D9DFED",
+            fontFamily: "Audiowide"
+          },
+          mWebFloating: {
+            enable: true, // false by default
+            icon: "https://app-cdn.moengage.com/sdk/bell-icon.svg", // absolute path to the icon image. by default, our icon will be used.
+            postion: "0px 10px 40px 0", // need all 4 offset in proper CSS format in the order of top, right, bottom, left.
+            countBackgroundColor: "#FF5A5F",
+            countColor: "#fff",
+            iconBackgroundColor: "#D9DFED",
+            fontFamily: "Audiowide"
+          },
+          card: {
+            headerFontSize: "16px",
+            descriptionFontSize: "14px",
+            ctaFontSize: "12px",
+            fontFamily: "inherit",
+            horizontalRowColor: "#D9DFED"
+          },
+          noDataContent: {
+            img: "https://app-cdn.moengage.com/sdk/cards-no-result.svg",
+            text: "No notifications to show, check again later.",
+          }
         }
-	  });
-        Moengage.add_unique_user_id("RifieTestCards");
+      }); // CSS selector of inbox icon 
+     
+        Moengage.add_unique_user_id("MoeTestCards");
 
 	  </script>
 
 
 
     <style>
-        body {
-            background-color: #eaeaea !important;
-            margin: 0;
-            padding: 0;
-            width:100%
+      
+
+        #cardicon {
+            position: relative;
+            z-index: 9999;
+          }
+
+          body {
+          text-align: center;
+          
         }
 
         #container {
@@ -91,50 +167,153 @@
         }
         
         .select{
-            border-radius: 50%;
+            border-radius:20px;
             border:none;
-            background: white;
+            background: red;
             padding:5px;
             margin:3px;
             cursor:pointer;
+            width : 20px;
         }
         
         .select-highlight{
-            border-radius: 50%;
+            border-radius:20px;
             border:none;
             background: gray;
             padding:5px;
             margin:3px;
             cursor:pointer;
+            width : 20px;
         }
         .select-container{
             display: flex;
             justify-content: center;
-            margin: 10px;
+            margin: 30px;
             flex-direction: row;
             position: absolute;
             align-items: flex-end;
-            bottom:70px;
+            bottom:-100px;
+            width : 20px;
+
             
         }
 
-        h1,
-        h3 {
-            display: flex;
-            justify-content: center;
-        }
-
+  .w800 { max-width: 800px; margin-top:auto; padding : 0 auto;}
     </style>
+
+
+
+    <script>
+        let interval = setInterval(function() {
+            console.log('Interval Running');
+            if (Moengage.cards === undefined) {
+              console.log("waiting")
+            } else {
+              console.log('Interval Stopped');
+              clearInterval(interval);
+              document.getElementById("heroimage").style.display = "none";
+              Moengage.cards.getCardsForCategory('Explore').then(function(cards) {
+                console.log(cards);
+              });
+            }
+          }, 1000);
+
+      function next() {
+          let c = document.getElementsByClassName("carousel_item-selected")[0].classList[0];
+          let nex = Number(c) + 1;
+          let s = "s" + String(c);
+          let snex = "s" + String(nex);
+          if (nex > carlen) {
+              document.getElementsByClassName(c)[0].classList.remove("carousel_item-selected");
+              document.getElementsByClassName(c)[0].classList.add("carousel_item");
+              document.getElementsByClassName("1")[0].classList.add("carousel_item-selected");
+              document.getElementsByClassName("1")[0].classList.remove("carousel_item");
+              
+              document.getElementsByClassName(s)[0].classList.remove("select-highlight");
+              document.getElementsByClassName(s)[0].classList.add("select");
+              document.getElementsByClassName("s1")[0].classList.add("select-highlight");
+              document.getElementsByClassName("s1")[0].classList.remove("select");
+          } else {
+              document.getElementsByClassName(c)[0].classList.remove("carousel_item-selected");
+              document.getElementsByClassName(c)[0].classList.add("carousel_item");
+              document.getElementsByClassName(nex)[0].classList.add("carousel_item-selected");
+              document.getElementsByClassName(nex)[0].classList.remove("carousel_item");
+              
+              document.getElementsByClassName(s)[0].classList.remove("select-highlight");
+              document.getElementsByClassName(s)[0].classList.add("select");
+              document.getElementsByClassName(snex)[0].classList.add("select-highlight");
+              document.getElementsByClassName(snex)[0].classList.remove("select");
+          }
+      };
+
+      function previous() {
+          let c = document.getElementsByClassName("carousel_item-selected")[0].classList[0];
+          let pre = Number(c) - 1;
+          let s = "s" + String(c);
+          let spre = "s" + String(pre);
+          let sprev = "s" + String(carlen);
+      
+          if (pre === 0) {
+              document.getElementsByClassName(c)[0].classList.remove("carousel_item-selected");
+              document.getElementsByClassName(c)[0].classList.add("carousel_item");
+              document.getElementsByClassName(carlen)[0].classList.add("carousel_item-selected");
+              document.getElementsByClassName(carlen)[0].classList.remove("carousel_item");
+              
+              document.getElementsByClassName(s)[0].classList.remove("select-highlight");
+              document.getElementsByClassName(s)[0].classList.add("select");
+              document.getElementsByClassName(sprev)[0].classList.add("select-highlight");
+              document.getElementsByClassName(sprev)[0].classList.remove("select");
+          } else {
+              document.getElementsByClassName(c)[0].classList.remove("carousel_item-selected");
+              document.getElementsByClassName(c)[0].classList.add("carousel_item");
+              document.getElementsByClassName(pre)[0].classList.add("carousel_item-selected");
+              document.getElementsByClassName(pre)[0].classList.remove("carousel_item");
+              
+              document.getElementsByClassName(s)[0].classList.remove("select-highlight");
+              document.getElementsByClassName(s)[0].classList.add("select");
+              document.getElementsByClassName(spre)[0].classList.add("select-highlight");
+              document.getElementsByClassName(spre)[0].classList.remove("select");
+          }
+      };
+      
+var intervalnew = setInterval(function() {next();}, 3000);
+      
+
+      
+    </script>
+
 
 
 </head>
 
 <body>
+
+    <div class="container w800 mt-6">
+        <h1>Cards</h1>
+
+       
+            <h1>Promotion</h1>
+
+            <div id="container">
+              <img id="heroimage" src="spin.gif" width="100">
+              <div id="buttons-prev">
+                  <button id="previous" onclick="previous()">&lt;</button>
+              </div>
+              <div id="buttons-next">
+                  <button id="next" onclick="next()">&gt;</button>
+              </div>
+              <div id="select-container" class="select-container">
+      
+              
+              </div>
+          </div>
+      
+
+
+    </div>
   
-        
-
-
-
+    
+  <div id="cardicon"></div>
 </body>
 
 </html>
