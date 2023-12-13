@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://sdk-01.moengage.com/" crossorigin />
     <link rel="dns-prefetch" href="https://sdk-01.moengage.com/" />
     <script src="https://cdn.moengage.com/webpush/moe_webSdk_webp.min.latest.js?app_id=32CIEEX5VX43302A2BQH85ND&cluster=DC_1"></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>WebP Sample</title>
 
 
@@ -43,6 +43,9 @@ h1, h2, h3
 <body>
 
     <div class="container-moe w800 mt-6">
+    	<div class="row">
+    		<button onclick="ClickFunc()">Click Me !</button>
+    	</div>
         <h1>Web Personalization</h1>
 
        
@@ -63,3 +66,8 @@ h1, h2, h3
 </body>
 
 </html>
+<script type="text/javascript">
+	function ClickFunc(){
+		MoEngage.add_unique_user_id = "BiTesting"
+	}
+</script>
